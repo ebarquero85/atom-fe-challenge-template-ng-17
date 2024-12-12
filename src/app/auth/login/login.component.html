@@ -1,0 +1,48 @@
+<mat-grid-list
+	cols="1"
+	rowHeight="100vh"
+>
+	<mat-grid-tile>
+		<div class="login-container">
+			<mat-card>
+				<mat-card-header>
+					<mat-card-title>Iniciar sesión</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<form
+						[formGroup]="loginForm"
+						(ngSubmit)="onSubmit()"
+					>
+						<mat-form-field
+							appearance="fill"
+							class="full-width"
+						>
+							<mat-label>Correo electrónico</mat-label>
+							<input
+								matInput
+								type="email"
+								formControlName="email"
+								placeholder="Ingresa tu correo"
+								required="true"
+							/>
+							<mat-error *ngIf="loginForm.get('email')?.invalid">
+								{{ getEmailErrorMessage() }}
+							</mat-error>
+						</mat-form-field>
+
+						<div class="button-container">
+							<button
+								mat-raised-button
+								color="primary"
+								type="submit"
+								[disabled]="loginForm.invalid"
+							>
+								Iniciar sesión
+							</button>
+						</div>
+					</form>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</mat-grid-tile>
+</mat-grid-list>
