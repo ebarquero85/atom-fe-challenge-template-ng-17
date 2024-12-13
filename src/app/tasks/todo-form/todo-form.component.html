@@ -1,0 +1,26 @@
+<mat-card appearance="outlined">
+	<form
+		[formGroup]="taskForm"
+		(ngSubmit)="onSubmit()"
+		autocomplete="off"
+	>
+		<mat-form-field>
+			<mat-label>Escriba la tarea</mat-label>
+			<textarea
+				matInput
+				maxlength="200"
+				formControlName="name"
+			></textarea>
+			<mat-hint>{{ taskForm.get('name')?.value.length }} / 200</mat-hint>
+		</mat-form-field>
+		<button
+			mat-raised-button
+			color="primary"
+			class="small-button"
+			[disabled]="taskForm.invalid"
+		>
+			<mat-icon>add</mat-icon>
+			Agregar Tarea
+		</button>
+	</form>
+</mat-card>

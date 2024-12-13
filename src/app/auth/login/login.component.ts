@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -17,7 +18,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 export class LoginComponent {
 	loginForm: FormGroup;
 
-	constructor(private fb: FormBuilder) {
+	constructor(
+		private fb: FormBuilder,
+		private router: Router,
+	) {
 		this.loginForm = this.fb.group({
 			email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
 		});
@@ -37,6 +41,7 @@ export class LoginComponent {
 	onSubmit() {
 		if (this.loginForm.valid) {
 			console.log('Formulario enviado:', this.loginForm.value);
+			this.router.navigate(['/home']);
 		}
 	}
 }

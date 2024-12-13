@@ -5,7 +5,7 @@
 			alt="Logo de la aplicación"
 			class="logo"
 		/>
-		<h1>ATOM TO DO APP</h1>
+		<h1><span [ngStyle]="{ color: 'orange' }">ATOM</span> TO DO APP</h1>
 		<h3>To Do App te ayuda a organizar tus tareas</h3>
 	</div>
 	<mat-card class="login-card">
@@ -22,6 +22,7 @@
 					matInput
 					type="email"
 					formControlName="email"
+					maxlength="30"
 				/>
 				<mat-error *ngIf="loginForm.get('email')?.invalid">
 					{{ getEmailErrorMessage() }}
