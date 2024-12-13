@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { TodoService } from '../todo.service';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-todo-form',
@@ -14,7 +15,6 @@ import { TodoService } from '../todo.service';
 	imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, CommonModule, MatButtonModule, MatIconModule, MatCardModule],
 	templateUrl: './todo-form.component.html',
 	styleUrl: './todo-form.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodoFormComponent {
 	public taskForm: FormGroup;
@@ -34,15 +34,15 @@ export class TodoFormComponent {
 		// Suscribirse en caso se carge una task para editar
 		this.todoService.todoSource.subscribe((todo) => {
 			if (todo) {
-				this.taskForm.patchValue(todo); // Cargar los datos en el formulario
+				this.taskForm.patchValue(todo);
 			}
 		});
 	}
 
 	onSubmit() {
 		if (this.taskForm.valid) {
-			console.log(this.taskForm.value);
-			this.taskForm.reset();
+			//console.log(this.taskForm.value);
+
 			// this.taskForm.patchValue({
 			// 	id: 0,
 			// 	text: null,
@@ -50,7 +50,19 @@ export class TodoFormComponent {
 			// });
 			//this.taskForm.markAsUntouched();
 			//this.taskForm.markAsDirty()
-			console.log(this.taskForm.value);
+			//console.log(this.taskForm.value);
+
+			Swal.fire({
+				//title: 'Tarea Agregada',
+				text: 'Tarea Agregada',
+				icon: 'success',
+				timer: 2500,
+				showConfirmButton: false,
+			});
+
+			this.todoService.addNewTask(this.taskForm.value);
+
+			this.taskForm.reset();
 		}
 	}
 }

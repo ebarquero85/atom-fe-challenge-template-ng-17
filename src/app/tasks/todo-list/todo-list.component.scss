@@ -51,6 +51,11 @@ button {
 	background-color: #d32f2f;
 }
 
+.tachado {
+	text-decoration: line-through;
+	color: gray;
+}
+
 @media screen and (max-width: 500px) {
 	body {
 		padding: 10px;
@@ -74,4 +79,13 @@ button {
 	.checkbox-label {
 		font-size: 17px;
 	}
+}
+
+.date-container {
+	font-size: 0.675rem;
+	color: #696868;
+	margin-top: 5px;
+	position: absolute;
+	margin-top: 50px;
+	margin-left: 12px;
 }
