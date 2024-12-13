@@ -16,7 +16,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'home',
-		loadChildren: () => import('./tasks/tasks.module').then((m) => m.TasksModule),
+		loadChildren: () => import('./tasks/todo.module').then((m) => m.TodoModule),
 	},
 	{
 		path: '**',

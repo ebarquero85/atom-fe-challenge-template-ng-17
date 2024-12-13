@@ -6,11 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Router } from '@angular/router';
+import { TodoListComponent } from '../todo-list/todo-list.component';
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
-	imports: [TodoFormComponent, MatCardModule, MatGridListModule, MatIconModule, MatDividerModule, MatFormFieldModule],
+	imports: [TodoFormComponent, TodoListComponent, MatCardModule, MatGridListModule, MatIconModule, MatDividerModule, MatFormFieldModule],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
 	changeDetection: ChangeDetectionStrategy.OnPush,

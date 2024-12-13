@@ -1,0 +1,27 @@
+<h1>Lista de Tareas</h1>
+<ul>
+	<li *ngFor="let todo of todos">
+		<mat-checkbox
+			[checked]="todo.completed"
+			(change)="updateCheck($event.checked, todo.id)"
+		>
+			<span class="checkbox-label">{{ todo.text }}</span>
+		</mat-checkbox>
+
+		<div class="button-group">
+			<button
+				class="edit-btn"
+				(click)="loadTask(todo)"
+			>
+				<mat-icon>edit</mat-icon>
+			</button>
+
+			<button
+				class="delete-btn"
+				(click)="deleteTask(todo.id)"
+			>
+				<mat-icon>delete</mat-icon>
+			</button>
+		</div>
+	</li>
+</ul>
