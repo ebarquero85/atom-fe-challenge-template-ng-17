@@ -3,8 +3,9 @@
 		[formGroup]="taskForm"
 		(ngSubmit)="onSubmit()"
 		autocomplete="off"
+		class="responsive-form"
 	>
-		<mat-form-field>
+		<mat-form-field class="form-field">
 			<mat-label>Título</mat-label>
 			<input
 				matInput
@@ -14,7 +15,7 @@
 			/>
 			<mat-hint>{{ taskForm.get('title')?.value ? taskForm.get('title')?.value.length : 0 }} / 100</mat-hint>
 		</mat-form-field>
-		<mat-form-field>
+		<mat-form-field class="form-field">
 			<mat-label>Descripción</mat-label>
 			<input
 				matInput

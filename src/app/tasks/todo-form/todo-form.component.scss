@@ -7,10 +7,6 @@ mat-form-field {
 	width: 100%;
 }
 
-button {
-	margin-top: 15px;
-}
-
 mat-hint {
 	color: #ff6d00;
 }
@@ -19,4 +15,21 @@ mat-hint {
 	font-size: 12px;
 	padding: 4px 8px;
 	height: 30px;
+}
+
+.responsive-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px; /* Espacio entre los campos */
+}
+
+.form-field {
+	flex: 1 1 calc(50% - 16px); /* 50% del ancho menos el espacio entre campos */
+	min-width: 300px; /* Ancho mínimo para mantener la apariencia */
+}
+
+@media (max-width: 768px) {
+	.form-field {
+		flex: 1 1 100%; /* Ocupa el 100% en pantallas móviles */
+	}
 }
