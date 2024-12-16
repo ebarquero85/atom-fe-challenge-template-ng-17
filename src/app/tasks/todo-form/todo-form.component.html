@@ -1,0 +1,40 @@
+<mat-card appearance="outlined">
+	<form
+		[formGroup]="taskForm"
+		(ngSubmit)="onSubmit()"
+		autocomplete="off"
+		class="responsive-form"
+	>
+		<mat-form-field class="form-field">
+			<mat-label>Título</mat-label>
+			<input
+				matInput
+				maxlength="100"
+				formControlName="title"
+				required="true"
+			/>
+			<mat-hint>{{ taskForm.get('title')?.value ? taskForm.get('title')?.value.length : 0 }} / 100</mat-hint>
+		</mat-form-field>
+		<mat-form-field class="form-field">
+			<mat-label>Descripción</mat-label>
+			<input
+				matInput
+				maxlength="200"
+				formControlName="description"
+				required="true"
+			/>
+			<mat-hint>{{ taskForm.get('description')?.value ? taskForm.get('description')?.value.length : 0 }} / 200</mat-hint>
+		</mat-form-field>
+		<button
+			mat-raised-button
+			color="primary"
+			class="small-button"
+			[disabled]="taskForm.invalid || isSaving"
+		>
+			<ng-container *ngIf="isSaving; else buttonText">
+				<mat-spinner [diameter]="25"></mat-spinner>
+			</ng-container>
+			<ng-template #buttonText>{{ taskForm.get('id')?.value ? 'Actualizar Tarea' : 'Agregar Tarea' }}</ng-template>
+		</button>
+	</form>
+</mat-card>

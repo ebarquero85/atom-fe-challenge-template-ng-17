@@ -1,0 +1,21 @@
+<div class="container-header">
+	<div class="app-name">ATOM TO-DO</div>
+	<div class="user-account">
+		<span>{{ email }}</span>
+		<button
+			mat-raised-button
+			color="primary"
+			(click)="logout()"
+		>
+			<mat-icon>exit_to_app</mat-icon>
+		</button>
+	</div>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-card class="container">
+	<app-todo-form></app-todo-form>
+
+	<app-todo-list></app-todo-list>
+</mat-card>

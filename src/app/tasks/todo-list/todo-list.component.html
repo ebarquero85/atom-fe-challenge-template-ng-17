@@ -1,0 +1,58 @@
+<h1>Lista de Tareas</h1>
+
+<div class="center-spinner">
+	<mat-spinner
+		*ngIf="isLoadingTask && !allTask.length"
+		color="accent"
+		diameter="50"
+		class="spinner"
+	></mat-spinner>
+</div>
+
+<div
+	class="alert"
+	*ngIf="!isLoadingTask && !allTask.length"
+>
+	<h3>Aún no tienes tareas</h3>
+</div>
+
+<ul>
+	<li *ngFor="let task of allTask">
+		<mat-checkbox
+			[checked]="task.completed"
+			(change)="updateCheck($event.checked, task.id)"
+			class="checkbox-container"
+		>
+			<span
+				[class.tachado]="task.completed"
+				class="checkbox-label-title"
+				><b>{{ task.title }}</b></span
+			>
+			<br />
+			<span
+				[class.tachado]="task.completed"
+				class="checkbox-label-description"
+				>{{ task.description }}</span
+			>
+		</mat-checkbox>
+		<div class="date-container">
+			<span>{{ task.createdAt | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+		</div>
+
+		<div class="button-group">
+			<button
+				class="edit-btn"
+				(click)="loadTask(task)"
+			>
+				<mat-icon>edit</mat-icon>
+			</button>
+
+			<button
+				class="delete-btn"
+				(click)="deleteTask(task)"
+			>
+				<mat-icon>delete</mat-icon>
+			</button>
+		</div>
+	</li>
+</ul>
