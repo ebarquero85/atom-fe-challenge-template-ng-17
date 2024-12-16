@@ -56,7 +56,19 @@ export class TodoListComponent {
 
 		if (task) {
 			task.completed = completed;
-			this.todoService.updateTask(task).subscribe((v) => {});
+			this.todoService.updateTask(task).subscribe((v) => {
+				Swal.fire({
+					//title: completed ? 'Tarea Completada' : 'Tarea Pendiente',
+					text: completed ? 'Tarea Completada' : 'Tarea Pendiente',
+					icon: 'success',
+					timer: 1500,
+					showConfirmButton: false,
+				});
+
+				this.todoService.getTasks().subscribe((v) => {
+					this.todoService.taskList.next(v);
+				});
+			});
 		}
 	}
 
@@ -80,7 +92,7 @@ export class TodoListComponent {
 						//title: 'Tarea Agregada',
 						text: 'Tarea Eliminada',
 						icon: 'success',
-						timer: 2000,
+						timer: 1500,
 						showConfirmButton: false,
 					});
 

@@ -29,7 +29,11 @@ export class HomeComponent {
 	//
 	public email: string = '';
 
-	constructor(private router: Router) {}
+	constructor(private router: Router) {
+		if (!localStorage.getItem('userId')) {
+			this.router.navigate(['/auth/login']);
+		}
+	}
 
 	ngOnInit() {
 		this.email = localStorage.getItem('email') || '';

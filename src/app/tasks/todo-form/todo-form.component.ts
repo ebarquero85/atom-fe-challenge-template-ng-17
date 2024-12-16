@@ -47,7 +47,6 @@ export class TodoFormComponent {
 	ngOnInit() {
 		this.taskForm.reset();
 
-		// Suscribirse en caso se carge una task para editar
 		this.todoService.taskLoaded.subscribe((todo) => {
 			if (todo) {
 				this.taskForm.patchValue(todo);
@@ -74,6 +73,14 @@ export class TodoFormComponent {
 						this.todoService.taskList.next(v);
 						this.isSaving = false;
 						this.taskForm.reset();
+
+						Swal.fire({
+							//title: 'Tarea Actualizada',
+							text: 'Tarea Actualizada',
+							icon: 'success',
+							timer: 1500,
+							showConfirmButton: false,
+						});
 					});
 				});
 
@@ -93,7 +100,7 @@ export class TodoFormComponent {
 						//title: 'Tarea Agregada',
 						text: 'Tarea Agregada',
 						icon: 'success',
-						timer: 2500,
+						timer: 1500,
 						showConfirmButton: false,
 					});
 				});

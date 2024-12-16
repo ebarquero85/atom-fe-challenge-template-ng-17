@@ -20,16 +20,16 @@ mat-hint {
 .responsive-form {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 16px; /* Espacio entre los campos */
+	gap: 16px;
 }
 
 .form-field {
-	flex: 1 1 calc(50% - 16px); /* 50% del ancho menos el espacio entre campos */
-	min-width: 300px; /* Ancho mínimo para mantener la apariencia */
+	flex: 1 1 calc(50% - 16px);
+	min-width: 300px;
 }
 
 @media (max-width: 768px) {
 	.form-field {
-		flex: 1 1 100%; /* Ocupa el 100% en pantallas móviles */
+		flex: 1 1 100%;
 	}
 }

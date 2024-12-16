@@ -41,8 +41,6 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	// align-items: center;
-	// justify-content: center;
 	min-height: 100vh;
 	background: linear-gradient(to bottom, #ffffff, #5d89b4);
 	padding: 10px;
@@ -55,8 +53,8 @@ button {
 }
 
 mat-divider {
-	color: #ff5722; /* Cambia el color del divider */
-	border-color: #ff5722; /* Cambia el color de la línea */
+	color: #ff5722;
+	border-color: #ff5722; 
 }
 
 @media screen and (max-width: 500px) {
