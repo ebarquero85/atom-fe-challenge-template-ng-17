@@ -18,8 +18,12 @@ li {
 	transition: all 0.3s ease;
 }
 
-.checkbox-label {
+.checkbox-label-title {
 	font-size: 15px;
+}
+
+.checkbox-label-description {
+	font-size: 10px;
 }
 
 .button-group {
@@ -88,4 +92,18 @@ button {
 	position: absolute;
 	margin-top: 50px;
 	margin-left: 12px;
+}
+
+.center-spinner {
+	place-items: center;
+}
+
+.alert {
+	background-color: white;
+	color: #ff6600;
+	border-radius: 10px;
+	text-align: center;
+	padding: 1px;
+	margin-left: 20%;
+	margin-right: 20%;
 }

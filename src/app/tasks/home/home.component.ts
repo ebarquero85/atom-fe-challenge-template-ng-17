@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodoFormComponent } from '../todo-form/todo-form.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -14,7 +14,6 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 	imports: [TodoFormComponent, TodoListComponent, MatCardModule, MatGridListModule, MatIconModule, MatDividerModule, MatFormFieldModule],
 	templateUrl: './home.component.html',
 	styleUrl: './home.component.scss',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
 	//
@@ -22,7 +21,7 @@ export class HomeComponent {
 	constructor(private router: Router) {}
 
 	logout() {
-		localStorage.clear()
+		localStorage.clear();
 		this.router.navigate(['/auth/login']);
 	}
 }

@@ -5,14 +5,24 @@
 		autocomplete="off"
 	>
 		<mat-form-field>
-			<mat-label>Escriba la tarea</mat-label>
-			<textarea
+			<mat-label>Título</mat-label>
+			<input
+				matInput
+				maxlength="100"
+				formControlName="title"
+				required="true"
+			/>
+			<mat-hint>{{ taskForm.get('title')?.value ? taskForm.get('title')?.value.length : 0 }} / 100</mat-hint>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Descripción</mat-label>
+			<input
 				matInput
 				maxlength="200"
-				formControlName="text"
+				formControlName="description"
 				required="true"
-			></textarea>
-			<mat-hint>{{ taskForm.get('text')?.value ? taskForm.get('text')?.value.length : 0 }} / 200</mat-hint>
+			/>
+			<mat-hint>{{ taskForm.get('description')?.value ? taskForm.get('description')?.value.length : 0 }} / 200</mat-hint>
 		</mat-form-field>
 		<button
 			mat-raised-button
@@ -20,8 +30,10 @@
 			class="small-button"
 			[disabled]="taskForm.invalid"
 		>
-			<mat-icon>add</mat-icon>
-			Agregar Tarea
+			<ng-container *ngIf="isSaving; else buttonText">
+				<mat-spinner [diameter]="25"></mat-spinner>
+			</ng-container>
+			<ng-template #buttonText>{{ taskForm.get('id')?.value ? 'Actualizar Tarea' : 'Agregar Tarea' }}</ng-template>
 		</button>
 	</form>
 </mat-card>

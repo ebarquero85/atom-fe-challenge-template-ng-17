@@ -1,6 +1,9 @@
-export interface taskInterface {
-	id: number;
-	text: string;
+export interface TaskInterface {
+	id: string;
+	userId: string;
+	title: string;
+	description: string;
 	completed: boolean;
-	date: Date;
+	deleted: boolean;
+	createdAt: string;
 }
