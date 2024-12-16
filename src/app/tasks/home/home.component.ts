@@ -22,6 +22,7 @@ export class HomeComponent {
 	constructor(private router: Router) {}
 
 	logout() {
+		localStorage.clear()
 		this.router.navigate(['/auth/login']);
 	}
 }
