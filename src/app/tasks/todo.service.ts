@@ -29,12 +29,15 @@ export class TodoService {
 	}
 
 	updateTask(task: TaskInterface): Observable<any> {
-		console.log(task)
 		return this.http.put<TaskInterface>(`${apiUrl}/tasks/${task.id}`, {
 			title: task.title,
 			description: task.description,
 			completed: task.completed,
 		});
+	}
+
+	deleteTask(taskId: string): Observable<any> {
+		return this.http.delete(`${apiUrl}/tasks/${taskId}`);
 	}
 
 	setTask(todo: TaskInterface) {

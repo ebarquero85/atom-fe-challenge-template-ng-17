@@ -28,7 +28,7 @@
 			mat-raised-button
 			color="primary"
 			class="small-button"
-			[disabled]="taskForm.invalid"
+			[disabled]="taskForm.invalid || isSaving"
 		>
 			<ng-container *ngIf="isSaving; else buttonText">
 				<mat-spinner [diameter]="25"></mat-spinner>

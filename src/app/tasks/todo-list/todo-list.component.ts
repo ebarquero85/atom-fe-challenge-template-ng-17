@@ -26,7 +26,7 @@ export class TodoListComponent {
 
 	constructor(public todoService: TodoService) {
 		this.todoService.taskList.subscribe((task) => {
-			this.allTask = task; // this.orderTask(task);
+			this.allTask = task;
 			this.sortTasks();
 		});
 	}
@@ -41,16 +41,14 @@ export class TodoListComponent {
 	}
 
 	sortTasks() {
-		// this.allTask.sort((a, b) => {
-		// 	// Primero se compara por fecha
-		// 	const dateComparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-		// 	// Si las fechas son iguales, se compara por 'completed' (false primero)
-		// 	if (dateComparison === 0) {
-		// 		return a.completed === b.completed ? 0 : a.completed ? 1 : -1;
-		// 	}
-		// 	// Si las fechas son diferentes, devuelve la comparación de las fechas
-		// 	return dateComparison;
-		// });
+		this.allTask.sort((a, b) => {
+			const dateComparison = new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+			return dateComparison;
+		});
+		this.allTask.sort((a, b) => {
+			if (a.completed === b.completed) return 0;
+			return a.completed ? 1 : -1;
+		});
 	}
 
 	updateCheck(completed: boolean, id: string) {
@@ -67,13 +65,18 @@ export class TodoListComponent {
 	}
 
 	deleteTask(id: string) {
-		console.log(`delete: ${id}`);
-		Swal.fire({
-			//title: 'Tarea Agregada',
-			text: 'Tarea Eliminada',
-			icon: 'success',
-			timer: 2000,
-			showConfirmButton: false,
+		this.todoService.deleteTask(id).subscribe((v) => {
+			Swal.fire({
+				//title: 'Tarea Agregada',
+				text: 'Tarea Eliminada',
+				icon: 'success',
+				timer: 2000,
+				showConfirmButton: false,
+			});
+
+			this.todoService.getTasks().subscribe((v) => {
+				this.todoService.taskList.next(v);
+			});
 		});
 	}
 
