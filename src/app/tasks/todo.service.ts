@@ -3,21 +3,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TaskInterface } from '../shared/interfaces/tasks';
 import { HttpClient } from '@angular/common/http';
 import { apiUrl } from '../shared/constants/api';
+import { FormEmpty } from '../shared/constants/form';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class TodoService {
 	//
-	public taskLoaded = new BehaviorSubject<TaskInterface>({
-		id: '',
-		userId: '',
-		title: '',
-		description: '',
-		completed: false,
-		deleted: false,
-		createdAt: '',
-	});
+	public taskLoaded = new BehaviorSubject<TaskInterface>(FormEmpty);
 
 	public taskList = new BehaviorSubject<TaskInterface[]>([]);
 
@@ -40,7 +33,7 @@ export class TodoService {
 		return this.http.delete(`${apiUrl}/tasks/${taskId}`);
 	}
 
-	setTask(todo: TaskInterface) {
+	setTaskForUpdate(todo: TaskInterface) {
 		this.taskLoaded.next(todo);
 	}
 

@@ -17,8 +17,13 @@ import { TodoListComponent } from '../todo-list/todo-list.component';
 })
 export class HomeComponent {
 	//
+	public email: string = '';
 
 	constructor(private router: Router) {}
+
+	ngOnInit() {
+		this.email = localStorage.getItem('email') || '';
+	}
 
 	logout() {
 		localStorage.clear();

@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { apiUrl } from '../../shared/constants/api';
 import { ResponseAuth } from '../../shared/interfaces/auth';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import Swal from 'sweetalert2';
 
 @Component({
 	selector: 'app-login',
@@ -63,11 +64,28 @@ export class LoginComponent {
 			this.http.get<ResponseAuth>(`${apiUrl}/users/${email}`).subscribe((data: ResponseAuth) => {
 				this.isLoading = false;
 
-				if (data.email) {
+				if (data) {
 					localStorage.setItem('userId', data.id);
+					localStorage.setItem('email', data.email);
 					this.router.navigate(['/home']);
 				} else {
-					alert('PENDIENTE CREAR USUARIO');
+					Swal.fire({
+						title: `${email}`,
+						text: 'El correo no existe. ¿Desea crear una cuenta?',
+						icon: 'warning',
+						showCancelButton: true,
+						confirmButtonColor: '#3085d6',
+						cancelButtonColor: '#d33',
+						confirmButtonText: 'Si. Registrarme!',
+					}).then((result) => {
+						if (result.isConfirmed) {
+							this.http.post<ResponseAuth>(`${apiUrl}/users`, { email }).subscribe((data: ResponseAuth) => {
+								localStorage.setItem('userId', data.id);
+								localStorage.setItem('email', data.email);
+								this.router.navigate(['/home']);
+							});
+						}
+					});
 				}
 			});
 		}

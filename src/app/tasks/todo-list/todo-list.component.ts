@@ -61,22 +61,34 @@ export class TodoListComponent {
 	}
 
 	loadTask(task: TaskInterface) {
-		this.todoService.setTask(task);
+		this.todoService.setTaskForUpdate(task);
 	}
 
-	deleteTask(id: string) {
-		this.todoService.deleteTask(id).subscribe((v) => {
-			Swal.fire({
-				//title: 'Tarea Agregada',
-				text: 'Tarea Eliminada',
-				icon: 'success',
-				timer: 2000,
-				showConfirmButton: false,
-			});
+	deleteTask(task: TaskInterface) {
+		Swal.fire({
+			//title: '¿Desea eliminar la tarea?',
+			text: `¿Desea eliminar: ${task.title}?`,
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Si, eliminar',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				this.todoService.deleteTask(task.id).subscribe((v) => {
+					Swal.fire({
+						//title: 'Tarea Agregada',
+						text: 'Tarea Eliminada',
+						icon: 'success',
+						timer: 2000,
+						showConfirmButton: false,
+					});
 
-			this.todoService.getTasks().subscribe((v) => {
-				this.todoService.taskList.next(v);
-			});
+					this.todoService.getTasks().subscribe((v) => {
+						this.todoService.taskList.next(v);
+					});
+				});
+			}
 		});
 	}
 

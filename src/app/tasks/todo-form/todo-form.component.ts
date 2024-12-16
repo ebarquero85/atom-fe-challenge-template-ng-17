@@ -10,6 +10,7 @@ import { TodoService } from '../todo.service';
 import Swal from 'sweetalert2';
 import { TaskInterface } from '../../shared/interfaces/tasks';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormEmpty } from '../../shared/constants/form';
 
 @Component({
 	selector: 'app-todo-form',
@@ -44,6 +45,8 @@ export class TodoFormComponent {
 	}
 
 	ngOnInit() {
+		this.taskForm.reset();
+
 		// Suscribirse en caso se carge una task para editar
 		this.todoService.taskLoaded.subscribe((todo) => {
 			if (todo) {
@@ -73,6 +76,8 @@ export class TodoFormComponent {
 						this.taskForm.reset();
 					});
 				});
+
+				this.todoService.setTaskForUpdate(FormEmpty);
 			} else {
 				// Guardar nueva tarea
 				this.todoService.createTask(newTask).subscribe((task) => {
