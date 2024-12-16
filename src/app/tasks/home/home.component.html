@@ -1,13 +1,18 @@
 <div class="container-header">
-	<div class="app-name">ATOM TO-DO</div>
-	<div class="user-account">
+	<div class="column column-1">
+		<div class="app-name">ATOM TO-DO</div>
+	</div>
+	<div class="column column-2">
 		<span>{{ email }}</span>
+	</div>
+
+	<div class="column column-3">
 		<button
 			mat-raised-button
-			color="primary"
 			(click)="logout()"
 		>
 			<mat-icon>exit_to_app</mat-icon>
+			Salir
 		</button>
 	</div>
 </div>
